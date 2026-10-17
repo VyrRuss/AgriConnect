@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title">
+  <title id="title">Ripe mangoes</title>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#fff5d8"/><stop offset="1" stop-color="#f4d697"/></linearGradient>
+    <linearGradient id="fruit" x2=".8" y2="1"><stop stop-color="#fbd44c"/><stop offset=".55" stop-color="#f39a26"/><stop offset="1" stop-color="#e65e2e"/></linearGradient>
+  </defs>
+  <rect width="640" height="420" rx="28" fill="url(#bg)"/>
+  <ellipse cx="324" cy="355" rx="178" ry="22" fill="#b48b4b" opacity=".18"/>
+  <path d="M316 115c-23-50 10-74 48-72-4 27-18 54-48 72" fill="#397b42"/>
+  <path d="M323 111c32-56 71-47 82-20-29 18-52 28-82 20" fill="#69a64f"/>
+  <path d="M323 110c-12 63-105 95-93 177 13 88 88 105 150 76 77-36 104-111 73-183-23-53-83-75-130-70" fill="url(#fruit)"/>
+  <path d="M280 167c-27 49-35 119-4 156" fill="none" stroke="#fff1a1" stroke-width="15" stroke-linecap="round" opacity=".58"/>
+  <path d="M390 176c31 39 35 86 16 119" fill="none" stroke="#d84e2a" stroke-width="8" stroke-linecap="round" opacity=".35"/>
+  <circle cx="205" cy="296" r="61" fill="#f2ae31"/>
+  <path d="M199 234c-7-26 7-40 28-42-1 18-9 31-28 42" fill="#4e8d45"/>
+  <path d="M200 236c-34 13-52 43-45 72 10 42 54 57 91 40 38-18 47-57 26-88-16-23-46-33-72-24" fill="#e87932"/>
+</svg>

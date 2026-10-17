@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title">
+  <title id="title">Oilseeds and groundnuts</title>
+  <rect width="640" height="420" rx="28" fill="#edf3dc"/>
+  <path d="M319 351c10-87-7-137-54-208M329 352c10-81 46-127 112-173M326 354c-4-81 1-132 8-219" fill="none" stroke="#638447" stroke-width="12" stroke-linecap="round"/>
+  <path d="M259 213c-83-51-123-12-105 37 42 18 82 12 105-37M435 211c78-57 122-21 107 30-37 21-80 18-107-30M350 167c-9-92 36-118 73-85-3 48-25 76-73 85" fill="#72a254"/>
+  <g fill="#e4bd70" stroke="#bf9850" stroke-width="5">
+    <path d="M190 300c-25-27-14-63 11-72 20-8 29 12 26 27 20-29 51-17 53 8 2 37-43 76-68 73-9-1-15-16-22-36z"/>
+    <path d="M370 286c-24-26-13-61 12-70 19-7 29 12 25 27 20-29 51-17 53 8 2 37-43 76-68 73-9-1-15-16-22-38z"/>
+  </g>
+  <g fill="#b58b47"><ellipse cx="224" cy="288" rx="13" ry="19"/><ellipse cx="244" cy="311" rx="13" ry="19"/><ellipse cx="404" cy="275" rx="13" ry="19"/><ellipse cx="424" cy="299" rx="13" ry="19"/></g>
+</svg>

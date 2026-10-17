@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title">
+  <title id="title">Farm hand tools and crop care sprayer</title>
+  <rect width="640" height="420" rx="28" fill="#f1eee5"/>
+  <ellipse cx="323" cy="356" rx="175" ry="20" fill="#6c604d" opacity=".15"/>
+  <path d="M232 135h105v50l-11 161H244l-12-161z" fill="#6da2a2" stroke="#477a7c" stroke-width="7"/>
+  <path d="M247 132h75v-23h-75zM284 105V84h102v17h-73" fill="none" stroke="#425f5e" stroke-width="12" stroke-linejoin="round"/>
+  <path d="M336 149h48l29 16" fill="none" stroke="#425f5e" stroke-width="11" stroke-linecap="round"/>
+  <path d="M278 215h19v77h-19z" fill="#d7e4d4"/>
+  <path d="M411 255l83-108 19 15-69 120-18 22-25-9z" fill="#b3814e" stroke="#88603a" stroke-width="5"/>
+  <path d="M473 172l21-28 25 18-22 29" fill="#6b994c"/>
+  <path d="M436 300l-16 33" stroke="#536f43" stroke-width="11" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Your cart | AgriConnect{% endblock %}
+{% block content %}
+<section class="container section-space cart-page">
+  <div class="section-heading">
+    <div><span class="section-kicker">YOUR FARM SUPPLIES</span><h1>Your cart</h1><p>Review your items before checkout.</p></div>
+  </div>
+  {% if items %}
+  <div class="row g-4 align-items-start">
+    <div class="col-lg-8">
+      {% for item in items %}
+      <article class="cart-item">
+        <span class="cart-item-icon" aria-hidden="true">{{ item.icon }}</span>
+        <div class="cart-item-details"><h2 class="h5">{{ item.name }}</h2><span class="text-secondary">₹{{ item.price }} <span class="cart-unit-label">each · Qty</span> {{ item.quantity }}</span></div>
+        <strong class="price-text">₹{{ item.subtotal }}</strong>
+        <form method="post" action="{{ url_for('remove_from_cart', product_id=item.id) }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button class="btn btn-sm btn-outline-secondary" type="submit" aria-label="Remove item">Remove</button>
+        </form>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="col-lg-4">
+      <div class="order-summary">
+        <h2 class="h5">Order summary</h2>
+        <div class="summary-line"><span>Subtotal</span><strong>₹{{ total }}</strong></div>
+        <div class="summary-line"><span>Delivery</span><span>Calculated by seller</span></div>
+        <hr>
+        <div class="summary-line summary-total"><span>Total</span><strong>₹{{ total }}</strong></div>
+        <a class="btn btn-success btn-lg rounded-pill w-100 mt-3" href="{{ url_for('checkout') }}">Continue to checkout</a>
+        <a class="btn btn-link w-100 mt-1" href="{{ url_for('home') }}#supplies">Continue shopping</a>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="empty-state"><div class="empty-icon">🧺</div><h2 class="h5">Your cart is empty</h2><p class="text-secondary">Browse the farm supplies marketplace and add something useful for your farm.</p><a class="btn btn-success rounded-pill px-4" href="{{ url_for('home') }}#supplies">Explore farm supplies</a></div>
+  {% endif %}
+</section>
+{% endblock %}

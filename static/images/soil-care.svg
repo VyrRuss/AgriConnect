@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title">
+  <title id="title">Organic compost and soil care</title>
+  <rect width="640" height="420" rx="28" fill="#f3eddf"/>
+  <ellipse cx="322" cy="357" rx="150" ry="20" fill="#6c5035" opacity=".16"/>
+  <path d="M226 145h188l-16 191H242z" fill="#b98750" stroke="#92683b" stroke-width="6"/>
+  <path d="M230 176h180l-4 38H233z" fill="#6e9a4e"/>
+  <text x="320" y="199" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="19" font-weight="700">ORGANIC</text>
+  <path d="M318 121c-3-55 32-72 58-43-4 28-26 44-58 43M310 141c-45-40-78-18-59 17 24 12 46 5 59-17" fill="#679449"/>
+  <path d="M317 155v65" stroke="#517d3f" stroke-width="9" stroke-linecap="round"/>
+  <path d="M275 267q45-24 90 0M275 291q45-24 90 0" fill="none" stroke="#e1c89f" stroke-width="8" stroke-linecap="round"/>
+</svg>

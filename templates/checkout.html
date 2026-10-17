@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Checkout | AgriConnect{% endblock %}
+{% block content %}
+<section class="container section-space cart-page">
+  <div class="section-heading">
+    <div><span class="section-kicker">SECURE CHECKOUT</span><h1>Delivery and payment</h1><p>Choose how to pay and enter where your order should be delivered.</p></div>
+  </div>
+  {% if form_error %}
+  <div class="alert alert-danger" role="alert">{{ form_error }}</div>
+  {% endif %}
+  <form method="post" action="{{ url_for('checkout') }}" id="checkoutForm">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-7">
+        <div class="order-summary">
+          <fieldset class="payment-choice">
+            <legend class="h5 mb-3">1. Choose a payment method</legend>
+            <label class="payment-option">
+              <input class="payment-option-radio" type="radio" name="payment_method" value="card" required {% if selected_payment == 'card' %}checked{% endif %}>
+              <span class="payment-option-icon" aria-hidden="true">💳</span>
+              <span><strong>Pay online by card</strong><small>Secure Stripe Checkout · Card details stay with Stripe</small></span>
+              <span aria-hidden="true">→</span>
+            </label>
+            <label class="payment-option">
+              <input class="payment-option-radio" type="radio" name="payment_method" value="cod" required {% if selected_payment == 'cod' %}checked{% endif %}>
+              <span class="payment-option-icon" aria-hidden="true">📦</span>
+              <span><strong>Cash on delivery</strong><small>Pay the seller when your order arrives</small></span>
+              <span aria-hidden="true">→</span>
+            </label>
+          </fieldset>
+
+          <fieldset id="deliveryFields" class="delivery-fields mt-4" {% if not selected_payment %}hidden disabled{% endif %}>
+            <legend class="h5 mb-3">2. Delivery address</legend>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="deliveryName">Full name</label>
+                <input class="form-control" id="deliveryName" name="delivery_name" autocomplete="name" maxlength="100" required value="{{ form_data.get('delivery_name', '') }}">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="deliveryPhone">Phone number</label>
+                <input class="form-control" id="deliveryPhone" name="delivery_phone" type="tel" autocomplete="tel" minlength="7" maxlength="20" pattern="[0-9+() -]{7,20}" required value="{{ form_data.get('delivery_phone', '') }}">
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="deliveryAddress">House number and street</label>
+                <textarea class="form-control" id="deliveryAddress" name="delivery_address" autocomplete="street-address" maxlength="250" rows="2" required>{{ form_data.get('delivery_address', '') }}</textarea>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="deliveryCity">City / town</label>
+                <input class="form-control" id="deliveryCity" name="delivery_city" autocomplete="address-level2" maxlength="100" required value="{{ form_data.get('delivery_city', '') }}">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="deliveryState">State</label>
+                <input class="form-control" id="deliveryState" name="delivery_state" autocomplete="address-level1" maxlength="100" required value="{{ form_data.get('delivery_state', '') }}">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="deliveryPostalCode">PIN code</label>
+                <input class="form-control" id="deliveryPostalCode" name="delivery_postal_code" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{6}" minlength="6" maxlength="6" required value="{{ form_data.get('delivery_postal_code', '') }}">
+              </div>
+            </div>
+            <button class="btn btn-success btn-lg rounded-pill w-100 mt-4" id="placeOrderButton" type="submit">
+              {% if selected_payment == 'card' %}Continue to secure card payment{% else %}Place order{% endif %}
+            </button>
+            <p class="small text-secondary mt-2 mb-0 text-center" id="paymentNote">
+              {% if selected_payment == 'card' %}You’ll continue to Stripe to securely complete payment.{% elif selected_payment == 'cod' %}You’ll see your order confirmation after placing the order.{% else %}Choose a payment method to continue.{% endif %}
+            </p>
+          </fieldset>
+          <a class="btn btn-link px-0 mt-3" href="{{ url_for('cart') }}">← Return to cart</a>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="order-summary">
+          <h2 class="h5">Order summary</h2>
+          {% for item in items %}
+          <div class="summary-line"><span>{{ item.name }} × {{ item.quantity }}</span><strong>₹{{ item.subtotal }}</strong></div>
+          {% endfor %}
+          <hr><div class="summary-line summary-total"><span>Total</span><strong>₹{{ total }}</strong></div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+{% endblock %}
+{% block page_scripts %}
+<script src="{{ url_for('static', filename='js/checkout.js', v='2') }}"></script>
+{% endblock %}

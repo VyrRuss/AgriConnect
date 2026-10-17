@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{% if signed_in %}Signed in | AgriConnect{% else %}Account created | AgriConnect{% endif %}{% endblock %}
+{% block content %}
+<section class="container section-space account-created-page text-center">
+  <div class="order-confirm-icon" aria-hidden="true">✓</div>
+  <span class="section-kicker">{% if signed_in %}WELCOME BACK TO AGRICONNECT{% else %}WELCOME TO AGRICONNECT{% endif %}</span>
+  <h1 class="mt-2">{% if signed_in %}Signed in successfully!{% else %}Account created successfully!{% endif %}</h1>
+  <p class="text-secondary">{% if signed_in %}Welcome back, {{ session.get('user_name', 'friend') }}. You are signed in to your {{ role }} account.{% else %}Welcome, {{ session.get('user_name', 'friend') }}. Your {{ role }} account is ready.{% endif %}</p>
+  {% if role == 'farmer' %}
+  <div class="account-next-step">
+    <span class="account-next-icon" aria-hidden="true">🌱</span>
+    <div><strong>Farmer Assist is ready for you</strong><p>Ask questions about crop problems, soil, watering, and more.</p></div>
+  </div>
+  <a class="btn btn-success btn-lg rounded-pill px-4 mt-3" href="{{ url_for('home') }}#farmer-help">Open Farmer Assist</a>
+  {% else %}
+  <div class="account-next-step">
+    <span class="account-next-icon" aria-hidden="true">🧺</span>
+    <div><strong>Your account is ready for shopping</strong><p>Explore farm supplies and keep your cart handy.</p></div>
+  </div>
+  <a class="btn btn-success btn-lg rounded-pill px-4 mt-3" href="{{ url_for('home') }}#supplies">Explore farm supplies</a>
+  {% endif %}
+  <div><a class="btn btn-link mt-2" href="{{ url_for('home') }}">Go to homepage</a></div>
+</section>
+{% endblock %}

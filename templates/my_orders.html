@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}My Orders | AgriConnect{% endblock %}
+{% block content %}
+<section class="container section-space my-orders-page">
+  <div class="section-heading">
+    <div><span class="section-kicker">YOUR AGRICONNECT PURCHASES</span><h1>My Orders</h1><p>Review your orders and follow their latest delivery status.</p></div>
+    <a class="btn btn-outline-success rounded-pill px-4" href="{{ url_for('home') }}#supplies">Shop farm essentials</a>
+  </div>
+
+  {% if orders %}
+  <div class="my-orders-list">
+    {% for order in orders %}
+    {% set order_id = order.get('_id', order.get('order_id', '')) %}
+    {% set status = order.get('fulfillment_status', 'confirmed') %}
+    <article class="my-order-card">
+      <div class="my-order-card-heading">
+        <div><span class="section-kicker">ORDER</span><h2>{{ order_id }}</h2></div>
+        <span class="order-status-pill">{{ status|replace('_', ' ')|title }}</span>
+      </div>
+      <div class="my-order-card-body">
+        <div>
+          <strong>{{ order.get('items', [])|length }} item{% if order.get('items', [])|length != 1 %}s{% endif %}</strong>
+          <p>{% for item in order.get('items', []) %}{{ item.get('name', 'Farm product') }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+        </div>
+        <div><span class="small text-secondary">Total</span><strong class="my-order-total">₹{{ order.get('total', 0) }}</strong></div>
+        <div><span class="small text-secondary">Payment</span><strong>{% if order.get('payment_method') == 'card' %}Paid online{% else %}Cash on delivery{% endif %}</strong></div>
+      </div>
+      <div class="my-order-card-actions">
+        <a class="btn btn-success rounded-pill px-4" href="{{ url_for('track_order', order_id=order_id) }}">Track order <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state my-orders-empty">
+    <div class="empty-icon" aria-hidden="true">📦</div>
+    <h2 class="h4">No orders yet</h2>
+    <p class="text-secondary">Your farm supply orders will appear here as soon as you place one.</p>
+    <a class="btn btn-success rounded-pill px-4" href="{{ url_for('home') }}#supplies">Explore farm essentials</a>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

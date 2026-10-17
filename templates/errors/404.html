@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Page not found | AgriConnect{% endblock %}
+{% block content %}
+<section class="container section-space text-center">
+  <div class="display-1">🌱</div><h1>We couldn't find that page</h1>
+  <p class="text-secondary">The page may have moved or the address may be incorrect.</p>
+  <a class="btn btn-success rounded-pill px-4" href="{{ url_for('home') }}">Back to home</a>
+</section>
+{% endblock %}

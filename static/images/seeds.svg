@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title">
+  <title id="title">Quality vegetable seed packets</title>
+  <rect width="640" height="420" rx="28" fill="#eaf3df"/>
+  <ellipse cx="324" cy="356" rx="188" ry="20" fill="#557f48" opacity=".16"/>
+  <path d="M196 119h150l17 220H180z" fill="#fffdf4" stroke="#d6dfc9" stroke-width="5"/>
+  <path d="M196 119h150l5 49H191z" fill="#397849"/>
+  <text x="270" y="151" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="19" font-weight="700">SEEDS</text>
+  <circle cx="270" cy="245" r="53" fill="#e65443"/>
+  <path d="M266 188l8 22 18-15-9 22 24-2-20 13" fill="none" stroke="#558847" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="270" y="319" text-anchor="middle" fill="#315d3e" font-family="Arial,sans-serif" font-size="17" font-weight="700">GROW WELL</text>
+  <path d="M377 164h118l13 175H365z" fill="#edc14e" stroke="#d4a844" stroke-width="4"/>
+  <path d="M377 164h118l4 37H374z" fill="#b87631"/>
+  <text x="436" y="188" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="16" font-weight="700">SEED MIX</text>
+  <path d="M411 276c-20-26-4-55 22-42 18-17 39-5 31 18-4 25-37 43-53 24z" fill="#6b9c4f"/>
+</svg>

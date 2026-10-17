@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title">
+  <title id="title">Chickpeas and pulses</title>
+  <rect width="640" height="420" rx="28" fill="#f5eedf"/>
+  <path d="M148 303c47-106 118-142 205-138M272 344c31-101 93-152 187-167M368 353c17-72 52-112 111-135" fill="none" stroke="#568349" stroke-width="12" stroke-linecap="round"/>
+  <path d="M152 303c-49-30-56-77-19-99 41-24 92-2 102 41-19 31-47 51-83 58M276 344c-47-34-49-76-13-97 39-22 88 0 96 41-20 30-48 49-83 56M464 206c-39-37-31-78 8-92 42-15 82 14 80 55-25 25-54 38-88 37" fill="#8fb360"/>
+  <g fill="#e6c877" stroke="#b5964f" stroke-width="3">
+    <circle cx="178" cy="251" r="15"/><circle cx="211" cy="267" r="15"/><circle cx="188" cy="292" r="15"/>
+    <circle cx="303" cy="292" r="15"/><circle cx="333" cy="311" r="15"/><circle cx="305" cy="329" r="15"/>
+    <circle cx="484" cy="149" r="14"/><circle cx="516" cy="164" r="14"/>
+  </g>
+  <ellipse cx="320" cy="370" rx="190" ry="19" fill="#d6c49c" opacity=".38"/>
+</svg>

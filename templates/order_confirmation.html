@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Order confirmed | AgriConnect{% endblock %}
+{% block content %}
+<section class="order-page section-space">
+  <div class="container">
+    <div class="order-success-hero text-center">
+    <div class="order-success-decoration order-success-decoration-left" aria-hidden="true">✦</div>
+    <div class="order-success-decoration order-success-decoration-right" aria-hidden="true">✦</div>
+    <div class="order-confirm-icon order-success-animation" role="img" aria-label="Order successfully confirmed">
+      <span aria-hidden="true">✓</span>
+    </div>
+    <span class="section-kicker">THANK YOU FOR SHOPPING WITH US</span>
+    <h1 class="mt-2 order-confirmation-title">Your order is confirmed!</h1>
+    <p class="order-success-copy">Your farm essentials are on their way to becoming part of your next harvest.</p>
+    <div class="order-success-reference">
+      <span>Order reference</span>
+      <strong>{{ order.get('_id', order.get('order_id', '')) }}</strong>
+    </div>
+    </div>
+
+    <div class="order-detail-grid">
+    <section class="order-panel order-tracking-panel" aria-labelledby="trackingHeading">
+      <div class="order-panel-heading">
+        <div><span class="section-kicker">YOUR DELIVERY</span><h2 id="trackingHeading">Order tracking</h2></div>
+        <span class="order-status-pill">{{ tracking.status_label }}</span>
+      </div>
+      <p class="order-tracking-note">{{ tracking.location_message }}</p>
+      <ol class="order-timeline">
+        {% for step in tracking.steps %}
+        <li class="order-timeline-step {% if step.complete %}is-complete{% endif %} {% if step.current %}is-current{% endif %}">
+          <span class="order-timeline-marker" aria-hidden="true">{% if step.complete %}✓{% elif step.current %}●{% else %}{{ loop.index }}{% endif %}</span>
+          <div><strong>{{ step.title }}</strong><p>{{ step.description }}</p></div>
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
+
+    <aside class="order-panel order-summary order-detail-summary">
+      <span class="section-kicker">ORDER SUMMARY</span>
+      <div class="summary-line mt-3"><span>Order total</span><strong>₹{{ order.total }}</strong></div>
+      <div class="summary-line"><span>Payment</span><strong>{% if order.payment_method == 'card' %}Paid online{% else %}Cash on delivery{% endif %}</strong></div>
+      <hr>
+      {% for item in order["items"] %}
+      <div class="summary-line"><span>{{ item.name }} × {{ item.quantity }}</span><strong>₹{{ item.subtotal }}</strong></div>
+      {% endfor %}
+      {% if order.get('delivery_address') %}
+      {% set address = order.get('delivery_address') %}
+      <hr>
+      <div class="delivery-confirmation">
+        <strong>Delivering to</strong>
+        <p>{{ address.get('name', '') }} · {{ address.get('phone', '') }}<br>
+          {{ address.get('address', '') }}<br>
+          {{ address.get('city', '') }}, {{ address.get('state', '') }} {{ address.get('postal_code', '') }}</p>
+      </div>
+      {% endif %}
+    </aside>
+    </div>
+
+    <div class="order-actions">
+    <a class="btn btn-success rounded-pill px-4" href="{{ url_for('track_order', order_id=order.get('_id', order.get('order_id', ''))) }}">Track this order</a>
+    <a class="btn btn-outline-success rounded-pill px-4" href="{{ url_for('my_orders') }}">📦 My Orders</a>
+    <a class="btn btn-link text-decoration-none" href="{{ url_for('home') }}#supplies">Continue shopping</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

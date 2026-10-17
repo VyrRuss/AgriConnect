@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Sign in | AgriConnect{% endblock %}
+{% block content %}
+<section class="login-section">
+  <div class="container py-5">
+    <div class="login-layout">
+      <div class="login-story">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> Your farming community</span>
+        <h1 class="login-title mt-4">Good things grow <span class="brand-green">together.</span></h1>
+        <p class="hero-copy">Sign in to manage your cart and keep your farm essentials close at hand.</p>
+        <div class="login-story-note"><span aria-hidden="true">🌾</span><span>Rooted in local agriculture.<br><strong>Growing with every farmer.</strong></span></div>
+      </div>
+      <div class="login-card">
+        <a class="login-back-link" href="{{ url_for('home') }}">← Back to home</a>
+        <div class="login-card-heading">
+          <span class="login-icon" aria-hidden="true">🌿</span>
+          <span class="section-kicker">WELCOME TO AGRICONNECT</span>
+          <h2>Sign in</h2>
+          <p>Use your email and password to continue.</p>
+        </div>
+        <form class="login-fields" method="post" action="{{ url_for('login', next=request.args.get('next')) }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <div class="mb-3">
+            <label class="form-label" for="email">Email address</label>
+            <input class="form-control" id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required maxlength="254">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required maxlength="128">
+          </div>
+          <button class="btn btn-success btn-lg rounded-pill w-100" type="submit">Sign in</button>
+        </form>
+        <p class="login-footer">New to AgriConnect? <a href="{{ url_for('register', next=request.args.get('next')) }}">Create an account</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

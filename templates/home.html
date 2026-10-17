@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% block title %}AgriConnect | Farmer Support & Marketplace{% endblock %}
+{% block content %}
+<section class="hero-section">
+  <div class="container py-5">
+    <div class="row align-items-center g-5 py-lg-4">
+      <div class="col-lg-6">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> A better way to grow together</span>
+        <h1 class="hero-title mt-3">Your farm.<br><span class="brand-green">Your future.</span><br>Connected.</h1>
+        <p class="hero-copy mt-3">Sell your harvest, find the supplies you need, and get practical farming guidance—all in one place.</p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a class="btn btn-success btn-lg rounded-pill px-4" href="#marketplace">Explore crops <span aria-hidden="true">→</span></a>
+          <a class="btn btn-outline-dark btn-lg rounded-pill px-4" href="#how-it-works">Learn more</a>
+        </div>
+        <div class="hero-trust mt-4">
+          <span>🌾 Crop marketplace</span><span>🌱 Farming resources</span><span>🤝 Farmer-first</span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-image-wrap">
+          <img class="hero-image" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85"
+               alt="Green agricultural fields under a bright sky" loading="eager">
+          <div class="floating-note">
+            <span class="note-icon">🌿</span>
+            <div><strong>Grow together</strong><br><small>From field to community</small></div>
+          </div>
+          <div class="image-stamp"><span>✦</span> Rooted in agriculture</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="benefit-strip">
+  <div class="container py-4">
+    <div class="row g-3">
+      <div class="col-md-4"><div class="benefit-item"><span class="benefit-icon">🌾</span><div><strong>Sell your harvest</strong><p>Showcase crops to potential buyers.</p></div></div></div>
+      <div class="col-md-4"><div class="benefit-item"><span class="benefit-icon">🧰</span><div><strong>Shop farm essentials</strong><p>Explore tools and agricultural supplies.</p></div></div></div>
+      <div class="col-md-4"><div class="benefit-item"><span class="benefit-icon">🌦️</span><div><strong>Learn and prepare</strong><p>Find guidance for everyday farm challenges.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-space" id="marketplace">
+  <div class="container">
+    <div class="section-heading">
+      <div><span class="section-kicker">FRESH FROM THE FARM</span><h2>Explore the crop marketplace</h2><p>Discover produce listed by farmers.</p></div>
+      <span class="soft-pill">Local listings</span>
+    </div>
+    <div class="market-status mb-3"><span class="market-live-dot"></span> Simulated market quotes <span class="market-status-note">Illustrative only · Not live exchange prices</span></div>
+    <div class="market-filter mb-4">
+      <label class="form-label fw-semibold mb-1" for="cropCategoryFilter">Filter crops by category</label>
+      <select class="form-select market-category-select" id="cropCategoryFilter">
+        <option value="all">All categories</option>
+        <option value="cereals">Cereals</option>
+        <option value="fruits">Fruits</option>
+        <option value="oilseeds">Oilseeds</option>
+        <option value="pulses">Pulses</option>
+        <option value="vegetables">Vegetables</option>
+      </select>
+      <span class="small text-secondary" id="cropCategoryCount" role="status" aria-live="polite"></span>
+    </div>
+    {% if featured_crops %}
+      <div class="row g-4" id="cropListings">
+        {% for crop in featured_crops %}
+        <div class="col-sm-6 col-lg-3 crop-listing" data-crop-category="{{ crop.get('category', 'Other')|lower }}">
+          <article class="content-card h-100">
+            {% if crop.get('image_url') %}<img class="card-photo" src="{{ crop.get('image_url') }}" alt="{{ crop.get('crop_name', 'Crop') }}">
+            {% else %}<div class="card-placeholder">{{ crop.get('icon', '🌾') }}</div>{% endif %}
+            <div class="p-3"><span class="category-label">{{ crop.get('category', 'Crop listing') }}</span><h3 class="h5 mt-2">{{ crop.get('crop_name', 'Crop') }}</h3>
+              <p class="small text-secondary mb-2">📍 {{ crop.get('location', 'Location not specified') }}</p>
+              <div class="market-quote"><strong class="price-text">₹<span data-market-price data-base-price="{{ crop.get('price', 0) }}">{{ crop.get('price', '—') }}</span></strong><span class="small text-secondary"> / {{ crop.get('unit', 'unit') }}</span></div>
+              <span class="market-change {% if crop.get('change_percent', 0) < 0 %}market-down{% else %}market-up{% endif %}" data-market-change data-base-change="{{ crop.get('change_percent', 0) }}">● {{ '%+.1f'|format(crop.get('change_percent', 0)) }}%</span>
+            </div>
+          </article>
+        </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <div class="empty-icon">🌾</div><h3 class="h5">Your marketplace starts here</h3>
+        <p class="text-secondary mb-0">Fresh crop listings from local farmers will appear here as the marketplace grows.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section-space section-tint" id="supplies">
+  <div class="container">
+    <div class="section-heading">
+      <div><span class="section-kicker">TOOLS FOR YOUR FARM</span><h2>Agricultural essentials</h2><p>Prepare for the season with the supplies you need.</p></div>
+    </div>
+    {% if featured_products %}
+      <div class="market-filter mb-4">
+        <label class="form-label fw-semibold mb-1" for="supplyCategoryFilter">Filter essentials by category</label>
+        <select class="form-select market-category-select" id="supplyCategoryFilter">
+          <option value="all">All essentials</option>
+          <option value="seeds-equipment">Seeds, electric kits, irrigation &amp; sowing</option>
+          <option value="fertilizers">Fertilizers</option>
+          <option value="agro-items">Agro items</option>
+        </select>
+        <span class="small text-secondary" id="supplyCategoryCount" role="status" aria-live="polite"></span>
+      </div>
+      <div class="row g-4" id="supplyProducts">
+        {% for product in featured_products %}
+        <div class="col-sm-6 col-lg-3 supply-product" data-supply-category="{{ product.get('essentials_group', 'other') }}"><article class="content-card h-100">
+          {% if product.get('image_url') %}<img class="card-photo" src="{{ product.get('image_url') }}" alt="{{ product.get('name', 'Farm product') }}">
+          {% else %}<div class="card-placeholder">{{ product.get('icon', '🧑‍🌾') }}</div>{% endif %}
+          <div class="p-3 d-flex flex-column flex-grow-1"><span class="category-label">{{ product.get('category', 'FARM SUPPLY') }}</span><h3 class="h5 mt-2">{{ product.get('name', 'Farm product') }}</h3><p class="small text-secondary">{{ product.get('description', 'Quality supplies for your farm.') }}</p><strong class="price-text">₹{{ product.get('price', '—') }}</strong>
+            <form class="mt-auto pt-3" method="post" action="{{ url_for('add_to_cart', product_id=product.get('product_id')) }}">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <button class="btn btn-success rounded-pill w-100" type="submit">Add to cart</button>
+            </form>
+          </div>
+        </article></div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="row g-3">
+        <div class="col-6 col-lg-3"><div class="supply-tile"><span>🌱</span><strong>Seeds</strong><small>Start with quality seeds</small></div></div>
+        <div class="col-6 col-lg-3"><div class="supply-tile"><span>🪴</span><strong>Fertilizers</strong><small>Support healthy growth</small></div></div>
+        <div class="col-6 col-lg-3"><div class="supply-tile"><span>💧</span><strong>Irrigation</strong><small>Manage water efficiently</small></div></div>
+        <div class="col-6 col-lg-3"><div class="supply-tile"><span>🛠️</span><strong>Farm tools</strong><small>Equip your daily work</small></div></div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section-space" id="farmer-help">
+  <div class="container">
+    {% if session.get('user_role') == 'farmer' %}
+    <div class="assistant-panel">
+      <div class="assistant-heading">
+        <div class="assistant-brand-icon" aria-hidden="true">🌱</div>
+        <div><span class="section-kicker">AGRICONNECT FARMER ASSIST</span><h2>Ask anything</h2><p>Get help with farming, everyday questions, learning, writing, calculations, and more.</p></div>
+      </div>
+      <div class="assistant-safety" role="note"><strong>Important:</strong> AI suggestions can be incomplete. Always confirm chemical use with the product label and a local agriculture expert. For urgent illness or poisoning, contact a qualified professional immediately.</div>
+      {% if assistant_enabled %}
+      <div class="assistant-chat" id="farmerAssistant" data-endpoint="{{ url_for('farmer_assistant') }}">
+        <div class="assistant-messages" id="assistantMessages" role="log" aria-live="polite" aria-relevant="additions">
+          <div class="assistant-message assistant-message-bot"><strong>Farmer Assist</strong><p>Namaste! Tell me what crop you are growing, your location, and what you have noticed. I’ll help you think through practical next steps.</p></div>
+        </div>
+        <form class="assistant-form" id="assistantForm">
+          <label class="visually-hidden" for="assistantQuestion">Ask any question</label>
+          <textarea class="form-control" id="assistantQuestion" name="message" rows="2" maxlength="2000" placeholder="Ask about farming, school, technology, writing, or anything else…" required></textarea>
+          <button class="btn btn-success rounded-pill assistant-send" type="submit"><span>Send</span><span aria-hidden="true">➤</span></button>
+        </form>
+        <p class="assistant-footnote">Please don’t share passwords, payment details, or other sensitive information.</p>
+      </div>
+      {% else %}
+      <div class="assistant-unavailable" role="status"><strong>AI assistant setup is needed</strong><span>Add your NVIDIA API key as <code>NVIDIA_KEY</code> in the project’s <code>.env</code> file, then restart the server.</span></div>
+      {% endif %}
+    </div>
+    {% else %}
+    <div class="assistant-panel assistant-preview">
+      <div class="assistant-heading">
+        <div class="assistant-brand-icon" aria-hidden="true">🌱</div>
+        <div><span class="section-kicker">AGRICONNECT FARMER ASSIST</span><h2>Ask anything</h2><p>Get AI help with farming and everyday questions, learning, writing, and more.</p></div>
+      </div>
+      <div class="assistant-safety" role="note"><strong>Important:</strong> AI suggestions are general information. Confirm chemical use with the product label and a local agriculture expert.</div>
+      <div class="assistant-preview-search">
+        <label class="visually-hidden" for="assistantPreviewQuestion">Ask any question</label>
+        <input class="form-control" id="assistantPreviewQuestion" type="search" placeholder="Ask about farming or anything else…" disabled>
+        {% if session.get('user_id') %}
+        <span class="assistant-access-note">Sign in with a farmer account to search farming problems.</span>
+        {% else %}
+        <a class="btn btn-success rounded-pill" href="{{ url_for('login', next='/#farmer-help') }}">Sign in to ask</a>
+        {% endif %}
+      </div>
+      {% if not session.get('user_id') %}
+      <p class="assistant-footnote mb-0">Farmer Assist is available only to signed-in farmer accounts.</p>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section-space section-tint" id="how-it-works">
+  <div class="container">
+    <div class="text-center mb-4"><span class="section-kicker">SIMPLE BY DESIGN</span><h2>Getting started is easy</h2></div>
+    <div class="row g-4">
+      <div class="col-md-4"><div class="step-card"><span class="step-number">01</span><h3 class="h5">Join the community</h3><p>Create a farmer or customer account when registration is available.</p></div></div>
+      <div class="col-md-4"><div class="step-card"><span class="step-number">02</span><h3 class="h5">Explore and connect</h3><p>Browse crop listings, discover farm supplies, and find useful guidance.</p></div></div>
+      <div class="col-md-4"><div class="step-card"><span class="step-number">03</span><h3 class="h5">Grow with confidence</h3><p>Manage orders and access farming resources in one convenient place.</p></div></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

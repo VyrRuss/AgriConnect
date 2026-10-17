@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Create an account | AgriConnect{% endblock %}
+{% block content %}
+<section class="login-section">
+  <div class="container py-5">
+    <div class="login-layout">
+      <div class="login-story">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> Join your farming community</span>
+        <h1 class="login-title mt-4">Let’s grow <span class="brand-green">together.</span></h1>
+        <p class="hero-copy">Create an account to save your cart and place orders for farm essentials.</p>
+        <div class="login-story-note"><span aria-hidden="true">🌱</span><span>One community.<br><strong>New possibilities every season.</strong></span></div>
+      </div>
+      <div class="login-card">
+        <a class="login-back-link" href="{{ url_for('home') }}">← Back to home</a>
+        <div class="login-card-heading">
+          <span class="login-icon" aria-hidden="true">🌿</span>
+          <span class="section-kicker">JOIN AGRICONNECT</span>
+          <h2>Create account</h2>
+          <p>It only takes a moment to get started.</p>
+        </div>
+        <form class="login-fields" method="post" action="{{ url_for('register', next=request.args.get('next')) }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <div class="mb-3">
+            <label class="form-label" for="name">Your name</label>
+            <input class="form-control" id="name" name="name" type="text" autocomplete="name" required maxlength="100">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="email">Email address</label>
+            <input class="form-control" id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required maxlength="254">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="role">I am joining as a</label>
+            <select class="form-select" id="role" name="role" required>
+              <option value="" selected disabled>Choose an account type</option>
+              <option value="farmer">Farmer — includes the AI farming assistant</option>
+              <option value="customer">Customer</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" id="password" name="password" type="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+            <div class="form-text">Use 8 to 128 characters.</div>
+          </div>
+          <button class="btn btn-success btn-lg rounded-pill w-100" type="submit">Create account</button>
+        </form>
+        <p class="login-footer">Already have an account? <a href="{{ url_for('login') }}">Sign in</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title">
+  <title id="title">Golden wheat and cereal grains</title>
+  <rect width="640" height="420" rx="28" fill="#f5f0d9"/>
+  <circle cx="490" cy="104" r="50" fill="#f0cc62" opacity=".6"/>
+  <path d="M0 311c122-56 203 13 320-21s190-28 320 20v110H0z" fill="#d9e5b9"/>
+  <g fill="none" stroke="#8b7134" stroke-width="10" stroke-linecap="round">
+    <path d="M276 363Q295 235 290 95M332 365Q334 227 381 104M385 365Q371 252 457 145"/>
+  </g>
+  <g fill="#d9aa3e" stroke="#bc8c2d" stroke-width="3">
+    <ellipse cx="275" cy="132" rx="13" ry="27" transform="rotate(-38 275 132)"/>
+    <ellipse cx="310" cy="145" rx="13" ry="27" transform="rotate(38 310 145)"/>
+    <ellipse cx="272" cy="174" rx="13" ry="27" transform="rotate(-38 272 174)"/>
+    <ellipse cx="309" cy="188" rx="13" ry="27" transform="rotate(38 309 188)"/>
+    <ellipse cx="282" cy="217" rx="13" ry="27" transform="rotate(-35 282 217)"/>
+    <ellipse cx="373" cy="143" rx="13" ry="27" transform="rotate(-40 373 143)"/>
+    <ellipse cx="404" cy="160" rx="13" ry="27" transform="rotate(37 404 160)"/>
+    <ellipse cx="361" cy="182" rx="13" ry="27" transform="rotate(-39 361 182)"/>
+    <ellipse cx="395" cy="199" rx="13" ry="27" transform="rotate(38 395 199)"/>
+    <ellipse cx="348" cy="226" rx="13" ry="27" transform="rotate(-30 348 226)"/>
+    <ellipse cx="445" cy="181" rx="13" ry="27" transform="rotate(-40 445 181)"/>
+    <ellipse cx="469" cy="202" rx="13" ry="27" transform="rotate(35 469 202)"/>
+    <ellipse cx="423" cy="222" rx="13" ry="27" transform="rotate(-40 423 222)"/>
+  </g>
+  <path d="M190 351q100 36 201 0" fill="none" stroke="#6c984a" stroke-width="13" stroke-linecap="round"/>
+</svg>
